@@ -25,7 +25,7 @@ You get stuff from movieclip.com's API endpoint [http://api.movieclips.com/v2/se
 
 
     
-Search espeçial
+Search for clips mentioning movie titles
 ---------------
 
 Want to search for clips mentioning movie names? No problemo:
