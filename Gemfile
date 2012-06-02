@@ -10,3 +10,4 @@ gem "goliath"
 gem 'em-http-request'
 gem 'em-synchrony'
 gem 'nori'
+gem 'dalli'

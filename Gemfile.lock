@@ -5,6 +5,7 @@ GEM
     async-rack (0.5.1)
       rack (~> 1.1)
     cookiejar (0.3.0)
+    dalli (2.0.2)
     em-http-request (1.0.1)
       addressable (>= 2.2.3)
       cookiejar
@@ -47,6 +48,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  dalli
   em-http-request
   em-synchrony
   goliath

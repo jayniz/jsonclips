@@ -11,13 +11,32 @@ class JSONClips < Goliath::API
   use Goliath::Rack::Render, ['json']
 
   def response(env)
-    method = get_method(env)
-    puts "GET #{method} with #{params(env)}"
-    return _404(env)  unless Movieclips.respond_to?(method)
-    Movieclips.send(method, env)
+    if cached = cache_get(env)
+      puts "HIT"
+      return [200, {}, cached]
+    end
+    result = dispatch(env)
+    cache_set(env, result)
+    result
   end
 
   private
+
+  def cache_set(env, response)
+    return unless response[0].to_i == 200
+    config['memcached'].set(env['REQUEST_URI'], response.last)
+  end
+
+  def cache_get(env)
+    config['memcached'].get(env['REQUEST_URI'])
+  end
+
+  def dispatch(env)
+    method = get_method(env)
+    puts "GET #{method} with #{params(env)}"
+    return _404(env)  unless Movieclips.respond_to?(method)
+    result = Movieclips.send(method, env)
+  end
 
   def params_hash(env)
     params = env['QUERY_STRING'].
