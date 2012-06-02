@@ -14,6 +14,11 @@ Fulltext search
 Request like this ([example](http://localhost:9000/search?q=he%20peed%20on%20my%20rug))
 
     http://localhost:9000/search?q=he%20peed%20on%20my%20rug
+    
+JSONP
+=====
+
+Yeah, just append `callback=your_callback` to the query string and you gots teh data.
 
 
 
