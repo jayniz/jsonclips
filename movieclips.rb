@@ -35,8 +35,8 @@ module Movieclips
     def self.request(path, options = {})
       uri = "#{BASE + path}?"+options.map{|k,v| k+'='+v}.join('&')
       puts "FORWARDING TO #{uri}"
-      conn = EM::HttpRequest.new(uri)#BASE + path)
-      get = conn.get(query: options)
+      conn = EM::HttpRequest.new(uri)
+      get = conn.get
       {
         status: get.response_header.status,
         body:   parse_response(get.response)
