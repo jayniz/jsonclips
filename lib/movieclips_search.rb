@@ -15,10 +15,12 @@ module Movieclips
       # Exclude movie names if asked for
       if options[:exclude_movie]
         s = s.select do |e|
-          title = e[:movie][:name]
+          title = e[:movie][:name].downcase
+          movie_title = e[:title].downcase
           select = true
           options[:exclude_movie].split(",").each do |f|
-            next unless title.downcase.include?(f)
+            next if !title.include?(f) and
+                    !movie_title.include?(f)
             select = false
           end
           select
