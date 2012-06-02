@@ -13,12 +13,24 @@ module Movieclips
     end
 
     def self.parse_entry(e)
-      {id: e['id'],
-       title: e['title']
+      {
+        type: 'video',
+        id:    e['mc:id'],
+        title: e['title'],
+        url:   e['id'],
+        duration: e['media:group']['media:content']['@duration'],
+        image_url: extract_images(e).last,
+        thumbnail_url: extract_images(e).first,
       }
     end
 
     private
+
+    def self.extract_images(e)
+      sizes = e['media:group']['media:thumbnail'].sort_by do |t|
+        t['@height'].to_i
+      end.map{|p| p['@url']}
+    end
 
     def self.empty
       [200, {}, '[]']
