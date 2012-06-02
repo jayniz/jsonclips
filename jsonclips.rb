@@ -3,7 +3,7 @@ require 'em-synchrony/em-http'
 require 'bundler'
 require 'json'
 Bundler.require
-require_relative './movieclips'
+require_relative 'lib/movieclips'
 
 class JSONClips < Goliath::API
   use Goliath::Rack::Params
