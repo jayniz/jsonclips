@@ -14,12 +14,12 @@ class JSONClips < Goliath::API
     method = get_method(env)
     puts "GET #{method} with #{params(env)}"
     return _404(env)  unless Movieclips.respond_to?(method)
-    Movieclips.send(method, params(env))
+    Movieclips.send(method, env['QUERY_STRING'])
   end
 
   private
 
-  def params(env)
+  def params_hash(env)
     params = env['QUERY_STRING'].
                split('&').
                map{|x| x.split('=')}.
