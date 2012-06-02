@@ -64,7 +64,7 @@ module Movieclips
       xml.gsub!("<?xml version='1.0' encoding='utf-8'",
                 '<?xml version="1.0" encoding="utf-8"')
       obj = Nori.parse(xml)
-      puts obj.to_json
+      puts JSON.pretty_generate(obj)
       obj
     end
   end
