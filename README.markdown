@@ -7,8 +7,6 @@ Movieclips.com API as JSON
 
 We wanted to use the movieclips.com API at the [2012 Movie Hack Day](http://moviehackday.com) but couldn't be bothered with XML. This little goliath app runs on heroku and provides a slimmed down version of their API in JSON instead of XML.
 
-Also, this app scrapes the associated movie id and name from search results (movie clips) to allow for filtering and easier navigation.
-
 It runs on http://jsonclips.herokuapp.com but to try it out, click the example links below.
 
 Supported Endpoints
@@ -22,6 +20,11 @@ Request like this ([example](http://jsonclips.herokuapp.com/search?q=he%20peed%2
     http://jsonclips.herokuapp.com/search?q=he%20peed%20on%20my%20rug
 
 You get stuff from movieclip.com's API endpoint [http://api.movieclips.com/v2/search/videos?q=searchterm](http://api.movieclips.com/v2/search/videos?q=searchterm) but in pretty JSON instead of bulky XML/atom.
+
+Extras:
+
+1. Associated movie id and name from search results (movie clips) are scraped from the description's HTML to allow for filtering and easier navigation.
+2. Largest and smallest associated pictures are added to be used as thumbnail or large preview.
 
 
     

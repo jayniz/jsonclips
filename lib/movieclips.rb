@@ -14,7 +14,7 @@ module Movieclips
 
   def self.search_title_quote(env)
     p = env['params']
-    o = { exclude_movie: "#{p['q']},mashup,top%2010}" }
+    o = { exclude_movie: "#{p['q']},mashup,trailer,top 10}" }
     Search.search(env['QUERY_STRING']+"&count=99999&filter_by=clip", o)
   end
 
