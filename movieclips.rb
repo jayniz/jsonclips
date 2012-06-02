@@ -10,7 +10,9 @@ module Movieclips
   end
 
   def self.sleepypants(params)
+    puts "Sleep"
     sleep 5
+    puts "Wakeup"
     "HOLA"
   end
 
@@ -23,12 +25,14 @@ module Movieclips
       conn = EM::HttpRequest.new(BASE + path)
       get = conn.get(query: options)
       response = get.response
-      puts get.response_header.status
-      parse_response response
+      # puts get.response_header.status
+      # parse_response response
+      puts "Done"
+      "#{Time.now} #{response}"
     end
 
     def self.parse_response(xml)
-      obj = Ox.parse_obj(xml)
+      puts xml
     end
   end
 

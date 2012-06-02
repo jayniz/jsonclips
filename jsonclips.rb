@@ -1,3 +1,5 @@
+require 'goliath'
+require 'em-synchrony/em-http'
 require 'bundler'
 require 'json'
 Bundler.require
