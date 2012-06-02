@@ -11,7 +11,7 @@ Supported Resources
 Fulltext search
 -----------
 
-Request like this ([example](http://localhost:9000/search?q=he%20peed%20on%20my%20rug))
+Request like this ([example](http://jsonclips.herokuapp.com/search?q=he%20peed%20on%20my%20rug))
 
     http://localhost:9000/search?q=he%20peed%20on%20my%20rug
     
