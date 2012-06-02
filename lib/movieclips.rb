@@ -8,7 +8,8 @@ module Movieclips
   BASE = 'http://api.movieclips.com/v2/'
 
   def self.search(env)
-    Search.search(env['QUERY_STRING'])
+    o = { exclude_movie: env['params']['exclude_movie'] }
+    Search.search(env['QUERY_STRING'], o)
   end
 
   def self.videos(env)

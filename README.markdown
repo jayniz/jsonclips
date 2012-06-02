@@ -15,6 +15,15 @@ Request like this ([example](http://localhost:9000/search?q=he%20peed%20on%20my%
 
     http://localhost:9000/search?q=he%20peed%20on%20my%20rug
     
+Search espeçial
+---------------
+
+The search scrapes the movie id and name from the description of the search results. Also, you can append the
+
+    http://localhost:9000/search?q=top%20gun&exclude_movie=top%20gun,mashup,top%2010
+
+to fetch a search for Top Gun, but excluding the movie Top Gun and mashups and top 10 lists.
+    
 JSONP
 =====
 
