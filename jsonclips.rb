@@ -15,6 +15,7 @@ class JSONClips < Goliath::API
       puts "HIT"
       return [200, {}, cached]
     end
+
     result = dispatch(env)
     cache_set(env, result)
     result
@@ -33,8 +34,9 @@ class JSONClips < Goliath::API
 
   def dispatch(env)
     method = get_method(env)
+    return _301 unless method
     puts "GET #{method} with #{params(env)}"
-    return _404(env)  unless Movieclips.respond_to?(method)
+    return _404(env) unless Movieclips.respond_to?(method)
     result = Movieclips.send(method, env)
   end
 
@@ -44,6 +46,11 @@ class JSONClips < Goliath::API
                map{|x| x.split('=')}.
                flatten
     Hash[*params]
+  end
+
+  def _301
+    github = "https://github.com/jayniz/jsonclips#readme"
+    [301, {'Location' => github}, github]
   end
 
   def _404(env)
