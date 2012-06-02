@@ -16,12 +16,6 @@ module Movieclips
     "HOLA"
   end
 
-  private
-
-  def self.empty
-    [200, {}, '[]']
-  end
-
 end
 
 module Movieclips
@@ -42,6 +36,12 @@ module Movieclips
       {id: e['id'],
        title: e['title']
       }
+    end
+
+    private
+
+    def self.empty
+      [200, {}, '[]']
     end
   end
 end
