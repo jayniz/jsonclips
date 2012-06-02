@@ -9,4 +9,4 @@ source "http://rubygems.org"
 gem "goliath"
 gem 'em-http-request'
 gem 'em-synchrony'
-gem 'ox'
+gem 'nori'

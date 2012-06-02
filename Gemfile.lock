@@ -33,6 +33,9 @@ GEM
       url_mount (~> 0.2.1)
     log4r (1.1.10)
     multi_json (1.3.6)
+    nokogiri (1.5.2)
+    nori (1.1.0)
+    ox (1.5.7)
     rack (1.4.1)
     rack-accept-media-types (0.9)
     rack-contrib (1.1.0)
@@ -49,3 +52,6 @@ DEPENDENCIES
   em-http-request
   em-synchrony
   goliath
+  nokogiri
+  nori
+  ox
