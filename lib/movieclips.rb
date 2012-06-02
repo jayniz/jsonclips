@@ -12,6 +12,12 @@ module Movieclips
     Search.search(env['QUERY_STRING'], o)
   end
 
+  def self.search_title_quote(env)
+    p = env['params']
+    o = { exclude_movie: "#{p['q']},mashup,top%2010}" }
+    Search.search(env['QUERY_STRING']+"&count=99999", o)
+  end
+
   def self.videos(env)
     Video.show(env['REQUEST_PATH'].split('/').last)
   end

@@ -2,9 +2,6 @@ module Movieclips
   module Search
     def self.search(params, options = {})
 
-      # Always search all the movies
-      params += "&count=99999"
-
       # Make the request
       raw = HTTP.request('search/videos', params)
       entries = raw[:body]['feed']['entry']
