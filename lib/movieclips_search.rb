@@ -21,6 +21,7 @@ module Movieclips
         duration: e['media:group']['media:content']['@duration'],
         image_url: extract_images(e).last,
         thumbnail_url: extract_images(e).first,
+        player_url: e['media:group']['media:player']['@url']
       }
     end
 

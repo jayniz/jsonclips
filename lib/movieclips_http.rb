@@ -1,7 +1,7 @@
 module Movieclips
   module HTTP
 
-    def self.request(path, query_string)
+    def self.request(path, query_string = '')
       uri = "#{BASE + path}?"+query_string
       puts "FORWARDING TO #{uri}"
       conn = EM::HttpRequest.new(uri)

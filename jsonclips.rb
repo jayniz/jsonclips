@@ -14,7 +14,7 @@ class JSONClips < Goliath::API
     method = get_method(env)
     puts "GET #{method} with #{params(env)}"
     return _404(env)  unless Movieclips.respond_to?(method)
-    Movieclips.send(method, env['QUERY_STRING'])
+    Movieclips.send(method, env)
   end
 
   private
