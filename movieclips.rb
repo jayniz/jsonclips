@@ -6,18 +6,7 @@ module Movieclips
   BASE = 'http://api.movieclips.com/v2/'
 
   def self.search(params)
-    raw = HTTP.request('search/videos', params)
-    s = begin
-      raw[:body]['feed']['entry'].map do |i|
-        {
-          id:    i['id'],
-          title: i['title'],
-        }
-      end
-    rescue
-      []
-    end
-    [raw[:status], {}, s.to_json]
+    Search.search(params)
   end
 
   def self.sleepypants(params)
@@ -27,7 +16,48 @@ module Movieclips
     "HOLA"
   end
 
+  private
 
+  def self.empty
+    [200, {}, '[]']
+  end
+
+end
+
+module Movieclips
+  module Search
+    def self.search(params)
+      raw = HTTP.request('search/videos', params)
+      entries = raw[:body]['feed']['entry']
+      return empty unless entries
+      s = entries.map{|e| parse_entry(e)}.compact
+      puts s
+      [raw[:status], {}, s.to_json]
+    end
+
+    def self.parse_entry(e)
+      puts "V"*82
+      case e.class.to_s
+      when "Array" then parse_array_entry(e)
+      when "Hash"  then parse_hash_entry(e)
+      else
+        raise "Unknown result #{e.class}"
+      end
+    end
+
+    def self.parse_array_entry(e)
+      y e
+    end
+
+    def self.parse_hash_entry(e)
+      {id: e['id'],
+       title: e['title']
+      }
+    end
+  end
+end
+
+module Movieclips
   module HTTP
 
     def self.request(path, query_string)
@@ -45,7 +75,7 @@ module Movieclips
       xml.gsub!("<?xml version='1.0' encoding='utf-8'",
                 '<?xml version="1.0" encoding="utf-8"')
       obj = Nori.parse(xml)
-      y obj
+      puts obj.to_json
       obj
     end
   end
