@@ -30,26 +30,15 @@ module Movieclips
       raw = HTTP.request('search/videos', params)
       entries = raw[:body]['feed']['entry']
       return empty unless entries
+
+      # When movieclips finds exactly one hit, the search
+      # returns not an array, but only that hit. So yeah.
+      entries = [entries].flatten
       s = entries.map{|e| parse_entry(e)}.compact
-      puts s
       [raw[:status], {}, s.to_json]
     end
 
     def self.parse_entry(e)
-      puts "V"*82
-      case e.class.to_s
-      when "Array" then parse_array_entry(e)
-      when "Hash"  then parse_hash_entry(e)
-      else
-        raise "Unknown result #{e.class}"
-      end
-    end
-
-    def self.parse_array_entry(e)
-      y e
-    end
-
-    def self.parse_hash_entry(e)
       {id: e['id'],
        title: e['title']
       }
