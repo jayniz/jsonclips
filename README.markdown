@@ -3,6 +3,8 @@ Movieclips.com API as JSON
 
 We wanted to use the movieclips.com API at the 2012 [Movie Hack Day](http://moviehackday.com). This little goliath app runs on heroku and provides a slimmed down version of their API in JSON instead of XML.
 
+It runs on http://jsonclips.herokuapp.com but to try it out, click the example links below.
+
 Supported Resources
 ===================
 
