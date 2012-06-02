@@ -13,15 +13,18 @@ module Movieclips
     end
 
     def self.parse_entry(e)
+      movie  = extract_movie(e)
+      images = extract_images(e)
       {
-        type: 'video',
-        id:    e['mc:id'],
-        title: e['title'],
-        url:   e['id'],
-        duration: e['media:group']['media:content']['@duration'],
-        image_url: extract_images(e).last,
-        thumbnail_url: extract_images(e).first,
-        player_url: e['media:group']['media:player']['@url']
+        type:          'video',
+        id:            e['mc:id'],
+        title:         e['title'],
+        url:           e['id'],
+        duration:      e['media:group']['media:content']['@duration'],
+        image_url:     images.last,
+        thumbnail_url: images.first,
+        player_url:    e['media:group']['media:player']['@url'],
+        movie:         movie
       }
     end
 
@@ -31,6 +34,14 @@ module Movieclips
       sizes = e['media:group']['media:thumbnail'].sort_by do |t|
         t['@height'].to_i
       end.map{|p| p['@url']}
+    end
+
+    def self.extract_movie(e)
+      result = {}
+      s = e['media:group']['media:description'].split('</a')[0]
+      result[:id] = s.match(/movieclips.com\/([^-]+)-/)[1] rescue :error
+      result[:name] = s.split('>')[1] rescue :error
+      result
     end
 
     def self.empty
