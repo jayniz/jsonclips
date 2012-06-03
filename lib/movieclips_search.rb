@@ -4,6 +4,9 @@ module Movieclips
 
       # Make the request
       raw = HTTP.request('search/videos', params)
+      return empty unless raw[:body]
+      return empty unless raw[:body]['feed']
+      return empty unless raw[:body]['feed']['entry']
       entries = raw[:body]['feed']['entry']
       return empty unless entries
 
